@@ -23,7 +23,7 @@ const Good = ({ item, addToCart }) => {
                 <Card.Subtitle className="mb-2 text-muted">
                     {item?.price || 0} {' '} {item?.currency || "UAH"}
                 </Card.Subtitle>
-                <Button variant="dark" onClick={() => addToCart(item)}>Add to cart</Button>
+                <Button variant="outline-dark" onClick={() => addToCart(item)}>Add to cart</Button>
             </Card.Body>
         </Card>
     );
