@@ -27,9 +27,9 @@ function* addShop(action) {
 }
 
 function* getGoods(action) {
-  const { shopId } = action.payload;
+  const { id } = action.payload;
   try {
-    const goods = yield call(api.getGoods_fb, shopId);
+    const goods = yield call(api.getGoods_fb, id);
     yield put({ type: types.SAGA_GET_GOODS_SUCCESS, payload: goods })
   } catch (e) {
     yield put({ type: types.SAGA_GET_GOODS_FAIL, message: e.message })
@@ -37,9 +37,9 @@ function* getGoods(action) {
 }
 
 function* addGood(action) {
-  const { name, shopId } = action.payload;
+  const { name, price, shopId } = action.payload;
   try {
-    const good = yield call(api.addGood_fb, { id: uuidv4(), name, shopId });
+    const good = yield call(api.addGood_fb, { id: uuidv4(), name, price, shopId });
     yield put({ type: types.SAGA_ADD_GOOD_SUCCESS, payload: good })
   } catch (e) {
     yield put({ type: types.SAGA_ADD_GOOD_FAIL, message: e.message })

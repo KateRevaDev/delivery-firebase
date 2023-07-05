@@ -50,11 +50,12 @@ export function addShop_fb({ id, name }) {
     });
 };
 
-export function addGood_fb({ id, name, shopId }) {
+export function addGood_fb({ id, name, price, shopId }) {
   const db = getDatabase();
   set(ref(db, 'goods/' + shopId + '/' + id), {
     name,
     id,
+    price,
   })
     .then(() => {
       // Data saved successfully!
