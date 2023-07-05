@@ -71,7 +71,7 @@ const App = () => {
           path="shops"
           element={<ShopGoods goods={goods} shops={shops} currentShop={currentShop} setCurrentShop={setCurrentShop} addToCart={addToCart} />}
         />
-        <Route path="admin" element={<AdminPanel />} />
+        <Route path="admin" element={<AdminPanel shops={shops} />} />
       </>
     )
   );
