@@ -1,16 +1,18 @@
 import { useState } from "react";
-import NoImagePlaceholder from "../../assets/no-image-placeholder.png";
-import CloseImg from "../../assets/close.svg";
+import Holder from "../../assets/holder143x90.png"
+import { Card, CloseButton, Col, Container, Image, Row } from "react-bootstrap";
 
 const CartItem = ({ item, removeItemFromCart, updateOrder }) => {
 
   const [quantity, setQuantity] = useState(item.quantity);
 
+  const { price, currency, name } = item;
+
   return (
-    <div key={`good-${item.id}`} className="cart-item">
-      <img className="cart-item__img" src={NoImagePlaceholder} />
-      <div className="cart-item__content">
-        <div className="cart-item__name">{item.name}</div>
+    <Card className="m-3" key={`good-${item.id}`}>
+      <Card.Body className="cart-item__content">
+        <Image src={Holder} width={143} rounded />
+        <Card.Text>{name}</Card.Text>
         <div className="cart-item__quantity">
           <input
             defaultValue={quantity}
@@ -27,18 +29,13 @@ const CartItem = ({ item, removeItemFromCart, updateOrder }) => {
               );
             }}
           />
-          <img
-            className="cart-item__close-img"
-            src={CloseImg}
-            alt="Remove item"
-            onClick={() => removeItemFromCart(item)}
-          />
+          <CloseButton alt="Remove item" onClick={() => removeItemFromCart(item)} className="cart-item__close-img" />
         </div>
-        <div>
-          {item?.price || 0} <span>{item?.currency || "UAH"}</span>
-        </div>
-      </div>
-    </div>
+        <Card.Subtitle className="mb-2 text-muted">
+          {price || 0} {' '} {currency || "UAH"}
+        </Card.Subtitle>
+      </Card.Body >
+    </Card >
   );
 };
 
