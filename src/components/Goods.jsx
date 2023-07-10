@@ -1,5 +1,5 @@
 import { Button, Card } from "react-bootstrap";
-import Holder from "../assets/holder.svg"
+import Holder from "../assets/holder286x180.svg"
 
 const Goods = ({ goods, addToCart }) => {
     return (
@@ -12,16 +12,15 @@ const Goods = ({ goods, addToCart }) => {
 };
 
 const Good = ({ item, addToCart }) => {
+    const { price, currency, name, description } = item;
     return (
         <Card style={{ width: '18rem', margin: '8px' }}>
             <Card.Img variant="top" src={Holder} />
             <Card.Body>
-                <Card.Title>{item.name}</Card.Title>
-                <Card.Text>
-                    {item.name}
-                </Card.Text>
+                <Card.Title>{name}</Card.Title>
+                <Card.Text>{description}</Card.Text>
                 <Card.Subtitle className="mb-2 text-muted">
-                    {item?.price || 0} {' '} {item?.currency || "UAH"}
+                    {price || 0} {' '} {currency || "UAH"}
                 </Card.Subtitle>
                 <Button variant="outline-dark" onClick={() => addToCart(item)}>Add to cart</Button>
             </Card.Body>

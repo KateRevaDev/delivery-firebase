@@ -12,6 +12,7 @@ function AdminPanel({ shops }) {
 
     const [shopName, setShopName] = useState('');
     const [goodName, setGoodName] = useState('');
+    const [goodDescription, setGoodDescription] = useState('');
     const [goodPrice, setGoodPrice] = useState(0);
     const [shopId, setShopId] = useState(shops.length ? shops[0].id : null);
 
@@ -39,15 +40,24 @@ function AdminPanel({ shops }) {
                     <Form className="m-3">
                         <Form.Label>Good name</Form.Label>
                         <Form.Control type="text" name="goodName" value={goodName} onChange={(e) => setGoodName(e.target.value)} />
+                        <Form.Label>Good description</Form.Label>
+                        <Form.Control 
+                            type="text" 
+                            name="goodDescription" 
+                            as="textarea"
+                            rows={3}
+                            value={goodDescription} 
+                            onChange={(e) => setGoodDescription(e.target.value)} 
+                        />
                         <Form.Label className="mt-2">Good price</Form.Label>
                         <Form.Control type="number" name="goodPrice" value={goodPrice} onChange={(e) => setGoodPrice(e.target.value)} />
                         <Form.Label className="mt-2">Shop</Form.Label>
                         <Form.Select name="shopId" value={shopId} onChange={(e) => setShopId(e.target.value)} >
-                            {shops.map(item => <option value={item.id}>{item.name}</option>)}
+                            {shops.map(item => <option key={`shop-${item.id}`} value={item.id}>{item.name}</option>)}
                         </Form.Select>
                         <Button
                             variant="outline-dark"
-                            onClick={() => addGood({ name: goodName, price: goodPrice, shopId })}
+                            onClick={() => addGood({ name: goodName, price: goodPrice, shopId, description: goodDescription })}
                             className="mt-2"
                         >
                             Add good
