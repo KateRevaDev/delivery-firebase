@@ -7,29 +7,23 @@ import {
 import ShopGoods from "./pages/ShopGoods.jsx";
 import Cart from "./pages/Cart.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  selectCurrentShop,
-  selectGoods,
-  selectIsLoading,
-  selectOrder,
-  selectOrderCreated,
-  selectShops,
-} from "./saga/reducer.js";
+import * as selectors from "./saga/reducer.js";
 import { initialize_fb } from "./api/queries.js";
 import { useEffect } from "react";
 import AdminPanel from "./pages/AdminPanel.jsx";
 import * as sagaActions from "./saga/actions.js";
 import { bindActionCreators } from "@reduxjs/toolkit";
+import Loader from "./components/Loader.jsx";
 
 
 const App = () => {
 
-  const isLoading = useSelector(selectIsLoading);
-  const goods = useSelector(selectGoods);
-  const shops = useSelector(selectShops);
-  const order = useSelector(selectOrder);
-  const orderCreated = useSelector(selectOrderCreated)
-  const currentShop = useSelector(selectCurrentShop);
+  const isLoading = useSelector(selectors.selectIsLoading);
+  const goods = useSelector(selectors.selectGoods);
+  const shops = useSelector(selectors.selectShops);
+  const order = useSelector(selectors.selectOrder);
+  const orderCreated = useSelector(selectors.selectOrderCreated)
+  const currentShop = useSelector(selectors.selectCurrentShop);
 
   const dispatch = useDispatch();
   const {
@@ -75,13 +69,14 @@ const App = () => {
       </>
     )
   );
-  if (isLoading) {
-    return <>Loading...</>;
-  };
 
   return (
     <>
-      <RouterProvider router={router} />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <RouterProvider router={router} />
+      )}
     </>);
 };
 
