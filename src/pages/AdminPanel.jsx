@@ -51,7 +51,7 @@ function AdminPanel({ shops }) {
                         />
                         <Form.Group className="mb-3">
                             <Form.Label>Image</Form.Label>
-                            <Form.Control type="file" />
+                            <Form.Control type="file" accept="image/*" />
                         </Form.Group>
                         <Form.Label className="mt-2">Good price</Form.Label>
                         <Form.Control type="number" name="goodPrice" value={goodPrice} onChange={(e) => setGoodPrice(e.target.value)} />
