@@ -41,14 +41,18 @@ function AdminPanel({ shops }) {
                         <Form.Label>Good name</Form.Label>
                         <Form.Control type="text" name="goodName" value={goodName} onChange={(e) => setGoodName(e.target.value)} />
                         <Form.Label>Good description</Form.Label>
-                        <Form.Control 
-                            type="text" 
-                            name="goodDescription" 
+                        <Form.Control
+                            type="text"
+                            name="goodDescription"
                             as="textarea"
                             rows={3}
-                            value={goodDescription} 
-                            onChange={(e) => setGoodDescription(e.target.value)} 
+                            value={goodDescription}
+                            onChange={(e) => setGoodDescription(e.target.value)}
                         />
+                        <Form.Group className="mb-3">
+                            <Form.Label>Image</Form.Label>
+                            <Form.Control type="file" />
+                        </Form.Group>
                         <Form.Label className="mt-2">Good price</Form.Label>
                         <Form.Control type="number" name="goodPrice" value={goodPrice} onChange={(e) => setGoodPrice(e.target.value)} />
                         <Form.Label className="mt-2">Shop</Form.Label>
