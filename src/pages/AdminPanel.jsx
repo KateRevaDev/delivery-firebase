@@ -15,6 +15,7 @@ function AdminPanel({ shops }) {
     const [goodDescription, setGoodDescription] = useState('');
     const [goodPrice, setGoodPrice] = useState(0);
     const [shopId, setShopId] = useState(shops.length ? shops[0].id : null);
+    const [image, setImage] = useState('');
 
     return (
         <>
@@ -51,7 +52,11 @@ function AdminPanel({ shops }) {
                         />
                         <Form.Group className="mb-3">
                             <Form.Label>Image</Form.Label>
-                            <Form.Control type="file" accept="image/*" />
+                            <Form.Control
+                                type="file"
+                                accept="image/*"
+                                onChange={e => setImage(e.target.files[0])}
+                            />
                         </Form.Group>
                         <Form.Label className="mt-2">Good price</Form.Label>
                         <Form.Control type="number" name="goodPrice" value={goodPrice} onChange={(e) => setGoodPrice(e.target.value)} />
@@ -61,7 +66,7 @@ function AdminPanel({ shops }) {
                         </Form.Select>
                         <Button
                             variant="outline-dark"
-                            onClick={() => addGood({ name: goodName, price: goodPrice, shopId, description: goodDescription })}
+                            onClick={() => addGood({ name: goodName, price: goodPrice, shopId, description: goodDescription, image: image })}
                             className="mt-2"
                         >
                             Add good

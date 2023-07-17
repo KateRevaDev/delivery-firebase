@@ -2,7 +2,6 @@ import { call, put, takeLatest } from 'redux-saga/effects'
 import * as api from '../api/queries'
 import * as types from './types'
 import { v4 as uuidv4 } from 'uuid';
-import { logEvent } from 'firebase/analytics';
 
 function* getShops() {
   try {
@@ -37,9 +36,9 @@ function* getGoods(action) {
 }
 
 function* addGood(action) {
-  const { name, price, shopId, description } = action.payload;
+  const { name, price, shopId, description, image } = action.payload;
   try {
-    const good = yield call(api.addGood_fb, { id: uuidv4(), name, price, shopId, description });
+    const good = yield call(api.addGood_fb, { id: uuidv4(), name, price, shopId, description, image });
     yield put({ type: types.SAGA_ADD_GOOD_SUCCESS, payload: good })
   } catch (e) {
     yield put({ type: types.SAGA_ADD_GOOD_FAIL, message: e.message })
