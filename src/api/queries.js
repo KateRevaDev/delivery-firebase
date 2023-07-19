@@ -1,6 +1,6 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, get, child } from "firebase/database";
+import { getStorage, ref as stRef, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -50,13 +50,16 @@ export function addShop_fb({ id, name }) {
     });
 };
 
-export function addGood_fb({ id, name, price, shopId, description }) {
+export async function addGood_fb({ id, name, price, shopId, description, image }) {
   const db = getDatabase();
+  // if there is an image - upload it first to receive an image URL
+  const imageURL = await uploadImage({ file: image, path: `/images/goods/${id}` });
   set(ref(db, 'goods/' + shopId + '/' + id), {
     name,
     id,
     price,
     description,
+    imageURL,
   })
     .then(() => {
       // Data saved successfully!
@@ -74,7 +77,7 @@ export async function getGoods_fb(id) {
   return table.exists() ? toArray(table.val()) : [];
 }
 
-export const createOrder_fb = async ({id, order}) => {
+export const createOrder_fb = async ({ id, order }) => {
   const db = getDatabase();
   set(ref(db, 'orders/' + id), order)
     .then(() => {
@@ -85,4 +88,20 @@ export const createOrder_fb = async ({id, order}) => {
       // The write failed...
       console.log('order fail ', error);
     });
+};
+
+const uploadImage = async ({ file, path }) => {
+  if (!file) {
+    return '';
+  };
+
+  const storage = getStorage();
+  const storageRef = stRef(storage, `${path}`);
+
+  const uploadTask = await uploadBytesResumable(storageRef, file);
+  const URL = await getDownloadURL(uploadTask.ref).then((downloadURL) => {
+    console.log('File available at', downloadURL);
+    return downloadURL;
+  });
+  return URL;
 };

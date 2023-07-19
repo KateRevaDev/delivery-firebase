@@ -4,18 +4,19 @@ import Holder from "../assets/holder286x180.svg"
 const Goods = ({ goods, addToCart }) => {
     return (
         <div className="goods">
-            {goods.length ? goods.map((item) => {
-                return <Good item={item} addToCart={addToCart} key={item.id} />;
-            }) : <span>Nothing here...</span>}
+            {goods.length
+                ? goods.map(item => <Good item={item} addToCart={addToCart} key={item.id} />)
+                : <span>Nothing here...</span>
+            }
         </div>
     );
 };
 
 const Good = ({ item, addToCart }) => {
-    const { price, currency, name, description } = item;
+    const { price, currency, name, description, imageURL } = item;
     return (
         <Card style={{ width: '18rem', margin: '8px' }}>
-            <Card.Img variant="top" src={Holder} />
+            <Card.Img variant="top" src={imageURL || Holder} />
             <Card.Body>
                 <Card.Title>{name}</Card.Title>
                 <Card.Text>{description}</Card.Text>
