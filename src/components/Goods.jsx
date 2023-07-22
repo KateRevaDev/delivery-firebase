@@ -1,4 +1,4 @@
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, CloseButton } from "react-bootstrap";
 import Holder from "../assets/holder286x180.svg"
 
 const Goods = ({ goods, addToCart }) => {
@@ -15,7 +15,8 @@ const Goods = ({ goods, addToCart }) => {
 const Good = ({ item, addToCart }) => {
     const { price, currency, name, description, imageURL } = item;
     return (
-        <Card style={{ width: '18rem', margin: '8px' }}>
+        <Card className="product-item" >
+            <CloseButton />
             <Card.Img variant="top" src={imageURL || Holder} />
             <Card.Body>
                 <Card.Title>{name}</Card.Title>
