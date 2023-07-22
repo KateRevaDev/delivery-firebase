@@ -1,22 +1,22 @@
 import { Button, Card, CloseButton } from "react-bootstrap";
 import Holder from "../assets/holder286x180.svg"
 
-const Goods = ({ goods, addToCart }) => {
+const Goods = ({ goods, addToCart, removeProduct, isAdmin }) => {
     return (
         <div className="goods">
             {goods.length
-                ? goods.map(item => <Good item={item} addToCart={addToCart} key={item.id} />)
+                ? goods.map(item => <Good item={item} addToCart={addToCart} removeProduct={removeProduct} key={item.id} isAdmin={isAdmin} />)
                 : <span>Nothing here...</span>
             }
         </div>
     );
 };
 
-const Good = ({ item, addToCart }) => {
+const Good = ({ item, addToCart, removeProduct, isAdmin }) => {
     const { price, currency, name, description, imageURL } = item;
     return (
         <Card className="product-item" >
-            <CloseButton />
+            {isAdmin && <CloseButton onClick={() => removeProduct(item)} />}
             <Card.Img variant="top" src={imageURL || Holder} />
             <Card.Body>
                 <Card.Title>{name}</Card.Title>
