@@ -52,12 +52,14 @@ const initialState = {
   currentShop: null,
   isLoading: true,
   orderCreated: false,
+  userInfo: {
+    isAdmin: false,
+  },
 };
 
 // Use the initialState as a default value
 export default function appReducer(state = initialState, action) {
   const data = action.payload;
-  console.log('data ', data);
   switch (action.type) {
     case types.SAGA_GET_SHOPS_SUCCESS:
       return { ...state, shops: data, isLoading: false };
