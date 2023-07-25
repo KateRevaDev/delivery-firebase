@@ -7,7 +7,6 @@ import {
 import ShopGoods from "./pages/ShopGoods.jsx";
 import Cart from "./pages/Cart.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import * as selectors from "./saga/reducer.js";
 import { initialize_fb } from "./api/queries.js";
 import { useEffect } from "react";
 import AdminPanel from "./pages/AdminPanel.jsx";
@@ -18,12 +17,12 @@ import Loader from "./components/Loader.jsx";
 
 const App = () => {
 
-  const isLoading = useSelector(selectors.selectIsLoading);
-  const goods = useSelector(selectors.selectGoods);
-  const shops = useSelector(selectors.selectShops);
-  const order = useSelector(selectors.selectOrder);
-  const orderCreated = useSelector(selectors.selectOrderCreated)
-  const currentShop = useSelector(selectors.selectCurrentShop);
+  const isLoading = useSelector(state => state.isLoading);
+  const goods = useSelector(state => state.goods);
+  const shops = useSelector(state => state.shops);
+  const order = useSelector(state => state.order);
+  const orderCreated = useSelector(state => state.orderCreated)
+  const currentShop = useSelector(state => state.currentShop);
   const isAdmin = useSelector(state => state.userInfo.isAdmin);
 
   const dispatch = useDispatch();
