@@ -24,6 +24,7 @@ const App = () => {
   const order = useSelector(selectors.selectOrder);
   const orderCreated = useSelector(selectors.selectOrderCreated)
   const currentShop = useSelector(selectors.selectCurrentShop);
+  const isAdmin = useSelector(state => state.userInfo.isAdmin);
 
   const dispatch = useDispatch();
   const {
@@ -34,6 +35,7 @@ const App = () => {
     removeItemFromCart,
     updateOrder,
     createOrder,
+    removeProduct,
   } = bindActionCreators(sagaActions, dispatch);
 
   useEffect(() => {
@@ -63,9 +65,17 @@ const App = () => {
         />
         <Route
           path="shops"
-          element={<ShopGoods goods={goods} shops={shops} currentShop={currentShop} setCurrentShop={setCurrentShop} addToCart={addToCart} />}
+          element={<ShopGoods
+            goods={goods}
+            shops={shops}
+            currentShop={currentShop}
+            setCurrentShop={setCurrentShop}
+            addToCart={addToCart}
+            isAdmin={isAdmin}
+            removeProduct={({ id }) => removeProduct({ shopId: currentShop.id, id })}
+          />}
         />
-        <Route path="admin" element={<AdminPanel shops={shops} />} />
+        {isAdmin && <Route path="admin" element={<AdminPanel shops={shops} />} />}
       </>
     )
   );

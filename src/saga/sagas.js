@@ -55,12 +55,22 @@ function* createOrder(action) {
   }
 }
 
+function* removeProduct(action) {
+  try {
+    const payload = yield call(api.removeProduct_fb, action.payload );
+    yield put({ type: types.SAGA_REMOVE_PRODUCT_SUCCESS, payload })
+  } catch (e) {
+    yield put({ type: types.SAGA_REMOVE_PRODUCT_FAIL, message: e.message })
+  }
+}
+
 function* mySaga() {
   yield takeLatest(types.SAGA_GET_SHOPS, getShops)
   yield takeLatest(types.SAGA_ADD_SHOP, addShop)
   yield takeLatest(types.SAGA_GET_GOODS, getGoods)
   yield takeLatest(types.SAGA_ADD_GOOD, addGood)
   yield takeLatest(types.SAGA_CREATE_ORDER, createOrder)
+  yield takeLatest(types.SAGA_REMOVE_PRODUCT, removeProduct)
 }
 
 export default mySaga
