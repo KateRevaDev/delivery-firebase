@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set, get, child } from "firebase/database";
+import { getDatabase, ref, set, get, child, remove } from "firebase/database";
 import { getStorage, ref as stRef, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -105,3 +105,16 @@ const uploadImage = async ({ file, path }) => {
   });
   return URL;
 };
+
+export const removeProduct_fb = async ({ shopId, id }) => {
+  const db = getDatabase();
+  try {
+    await remove(ref(db, 'goods/' + shopId + '/' + id));
+    console.log('remove success');
+    return { id };
+  } catch (error) {
+    console.log('order fail ', error);
+  }
+
+  return false;
+}

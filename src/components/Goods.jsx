@@ -5,14 +5,14 @@ const Goods = ({ goods, addToCart, removeProduct, isAdmin }) => {
     return (
         <div className="goods">
             {goods.length
-                ? goods.map(item => <Good item={item} addToCart={addToCart} removeProduct={removeProduct} key={item.id} isAdmin={isAdmin} />)
+                ? goods.map(item => <Product item={item} addToCart={addToCart} removeProduct={removeProduct} key={item.id} isAdmin={isAdmin} />)
                 : <span>Nothing here...</span>
             }
         </div>
     );
 };
 
-const Good = ({ item, addToCart, removeProduct, isAdmin }) => {
+const Product = ({ item, addToCart, removeProduct, isAdmin }) => {
     const { price, currency, name, description, imageURL } = item;
     return (
         <Card className="product-item" >

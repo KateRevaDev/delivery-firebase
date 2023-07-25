@@ -35,6 +35,7 @@ const App = () => {
     removeItemFromCart,
     updateOrder,
     createOrder,
+    removeProduct,
   } = bindActionCreators(sagaActions, dispatch);
 
   useEffect(() => {
@@ -71,6 +72,7 @@ const App = () => {
             setCurrentShop={setCurrentShop}
             addToCart={addToCart}
             isAdmin={isAdmin}
+            removeProduct={({ id }) => removeProduct({ shopId: currentShop.id, id })}
           />}
         />
         {isAdmin && <Route path="admin" element={<AdminPanel shops={shops} />} />}

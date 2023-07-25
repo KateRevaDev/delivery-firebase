@@ -35,3 +35,7 @@ export const updateOrder = (payload) => {
 export const createOrder = (payload) => {
     return { type: types.SAGA_CREATE_ORDER, payload };
 }
+
+export const removeProduct = (payload) => {
+    return { type: types.SAGA_REMOVE_PRODUCT, payload };
+}

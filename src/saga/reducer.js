@@ -53,7 +53,7 @@ const initialState = {
   isLoading: true,
   orderCreated: false,
   userInfo: {
-    isAdmin: false,
+    isAdmin: true,
   },
 };
 
@@ -82,6 +82,8 @@ export default function appReducer(state = initialState, action) {
         };
       }
       return { ...state, order };
+    case types.SAGA_REMOVE_PRODUCT_SUCCESS:
+      return { ...state, goods: state.goods.filter(item => item.id !== data.id) };
     default:
       return state;
   }
