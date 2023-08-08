@@ -52,7 +52,16 @@ const App = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
-        <Route path="/" element={<ShopGoods goods={goods} shops={shops} currentShop={currentShop} />} />
+        <Route
+          path="/"
+          element={
+            <ShopGoods
+              goods={goods}
+              shops={shops}
+              currentShop={currentShop}
+              setCurrentShop={setCurrentShop}
+            />}
+        />
         <Route path="cart" element={
           <Cart
             order={order}
