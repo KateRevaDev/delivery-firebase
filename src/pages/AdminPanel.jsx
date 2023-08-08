@@ -11,9 +11,9 @@ function AdminPanel({ shops }) {
     const { addShop, addGood } = bindActionCreators(actions, dispatch);
 
     const [shopName, setShopName] = useState('');
-    const [goodName, setGoodName] = useState('');
-    const [goodDescription, setGoodDescription] = useState('');
-    const [goodPrice, setGoodPrice] = useState(0);
+    const [productName, setProductName] = useState('');
+    const [productDescription, setProductDescription] = useState('');
+    const [productPrice, setProductPrice] = useState(0);
     const [shopId, setShopId] = useState(shops.length ? shops[0].id : null);
     const [image, setImage] = useState('');
 
@@ -37,18 +37,18 @@ function AdminPanel({ shops }) {
                         </Button>
                     </Form>
                 </Tab>
-                <Tab eventKey="add-good" title="Add Good">
+                <Tab eventKey="add-product" title="Add Product">
                     <Form className="m-3">
-                        <Form.Label>Good name</Form.Label>
-                        <Form.Control type="text" name="goodName" value={goodName} onChange={(e) => setGoodName(e.target.value)} />
-                        <Form.Label>Good description</Form.Label>
+                        <Form.Label>Product name</Form.Label>
+                        <Form.Control type="text" name="productName" value={productName} onChange={(e) => setProductName(e.target.value)} />
+                        <Form.Label>Product description</Form.Label>
                         <Form.Control
                             type="text"
-                            name="goodDescription"
+                            name="productDescription"
                             as="textarea"
                             rows={3}
-                            value={goodDescription}
-                            onChange={(e) => setGoodDescription(e.target.value)}
+                            value={productDescription}
+                            onChange={(e) => setProductDescription(e.target.value)}
                         />
                         <Form.Group className="mb-3">
                             <Form.Label>Image</Form.Label>
@@ -58,18 +58,18 @@ function AdminPanel({ shops }) {
                                 onChange={e => setImage(e.target.files[0])}
                             />
                         </Form.Group>
-                        <Form.Label className="mt-2">Good price</Form.Label>
-                        <Form.Control type="number" name="goodPrice" value={goodPrice} onChange={(e) => setGoodPrice(e.target.value)} />
+                        <Form.Label className="mt-2">Product price</Form.Label>
+                        <Form.Control type="number" name="producrPrice" value={productPrice} onChange={(e) => setProductPrice(e.target.value)} />
                         <Form.Label className="mt-2">Shop</Form.Label>
                         <Form.Select name="shopId" value={shopId} onChange={(e) => setShopId(e.target.value)} >
                             {shops.map(item => <option key={`shop-${item.id}`} value={item.id}>{item.name}</option>)}
                         </Form.Select>
                         <Button
                             variant="outline-dark"
-                            onClick={() => addGood({ name: goodName, price: goodPrice, shopId, description: goodDescription, image: image })}
+                            onClick={() => addGood({ name: productName, price: productPrice, shopId, description: productDescription, image: image })}
                             className="mt-2"
                         >
-                            Add good
+                            Add product
                         </Button>
                     </Form>
                 </Tab>

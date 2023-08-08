@@ -4,7 +4,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import ShopGoods from "./pages/ShopGoods.jsx";
+import ShopProducts from "./pages/ShopProducts.jsx";
 import Cart from "./pages/Cart.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { initialize_fb } from "./api/queries.js";
@@ -18,7 +18,7 @@ import Loader from "./components/Loader.jsx";
 const App = () => {
 
   const isLoading = useSelector(state => state.isLoading);
-  const goods = useSelector(state => state.goods);
+  const products = useSelector(state => state.goods);
   const shops = useSelector(state => state.shops);
   const order = useSelector(state => state.order);
   const orderCreated = useSelector(state => state.orderCreated)
@@ -28,7 +28,7 @@ const App = () => {
   const dispatch = useDispatch();
   const {
     getShops,
-    getGoods,
+    getProducts,
     setCurrentShop,
     addToCart,
     removeItemFromCart,
@@ -45,7 +45,7 @@ const App = () => {
 
   useEffect(() => {
     if (currentShop) {
-      getGoods(currentShop);
+      getProducts(currentShop);
     }
   }, [currentShop])
 
@@ -55,8 +55,8 @@ const App = () => {
         <Route
           path="/"
           element={
-            <ShopGoods
-              goods={goods}
+            <ShopProducts
+              products={products}
               shops={shops}
               currentShop={currentShop}
               setCurrentShop={setCurrentShop}
@@ -73,8 +73,8 @@ const App = () => {
         />
         <Route
           path="shops"
-          element={<ShopGoods
-            goods={goods}
+          element={<ShopProducts
+            products={products}
             shops={shops}
             currentShop={currentShop}
             setCurrentShop={setCurrentShop}

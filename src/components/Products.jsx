@@ -1,11 +1,11 @@
 import { Button, Card, CloseButton } from "react-bootstrap";
 import Holder from "../assets/holder286x180.svg"
 
-const Goods = ({ goods, addToCart, removeProduct, isAdmin }) => {
+const Products = ({ products, addToCart, removeProduct, isAdmin }) => {
     return (
-        <div className="goods">
-            {goods.length
-                ? goods.map(item => <Product item={item} addToCart={addToCart} removeProduct={removeProduct} key={item.id} isAdmin={isAdmin} />)
+        <div className="products">
+            {products.length
+                ? products.map(item => <Product item={item} addToCart={addToCart} removeProduct={removeProduct} key={item.id} isAdmin={isAdmin} />)
                 : <span>Nothing here...</span>
             }
         </div>
@@ -30,4 +30,4 @@ const Product = ({ item, addToCart, removeProduct, isAdmin }) => {
     );
 };
 
-export default Goods;
+export default Products;

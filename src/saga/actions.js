@@ -4,7 +4,7 @@ export const getShops = (payload) => {
     return { type: types.SAGA_GET_SHOPS, payload };
 }
 
-export const getGoods = (payload) => {
+export const getProducts = (payload) => {
     return { type: types.SAGA_GET_GOODS, payload };
 }
 
