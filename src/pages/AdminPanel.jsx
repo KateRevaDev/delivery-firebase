@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import * as actions from "../saga/actions";
 import { bindActionCreators } from "@reduxjs/toolkit";
-import Header from "../components/Header";
 import { Button, Form, Tab, Tabs } from "react-bootstrap";
+import Layout from "../components/containers/Layout";
 
 function AdminPanel({ shops }) {
 
@@ -18,8 +18,7 @@ function AdminPanel({ shops }) {
     const [image, setImage] = useState('');
 
     return (
-        <>
-            <Header />
+        <Layout>
             <Tabs
                 defaultActiveKey="add-shop"
                 id="uncontrolled-tab-example"
@@ -74,7 +73,7 @@ function AdminPanel({ shops }) {
                     </Form>
                 </Tab>
             </Tabs>
-        </>
+        </Layout>
     );
 };
 
