@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
+import { Fade, Tooltip } from "@mui/material";
 
 const Header = () => {
 
@@ -19,8 +20,14 @@ const Header = () => {
             Shops
           </Nav.Link>
           <Nav.Link as={Link} to="/cart">
-            <ShoppingCartOutlinedIcon />
-            Cart ({quantity || 0})
+            <Tooltip
+              title={`You have ${quantity || 'no'} ${quantity === 1 ? 'product' : 'products'} in your cart`}
+              TransitionComponent={Fade}
+              TransitionProps={{ timeout: 600 }}
+            >
+              <ShoppingCartOutlinedIcon />
+              Cart ({quantity || 0})
+            </Tooltip>
           </Nav.Link>
           <Nav.Link as={Link} to="/admin">
             <AdminPanelSettingsOutlinedIcon />
