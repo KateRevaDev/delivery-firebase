@@ -1,11 +1,12 @@
 import { useSelector } from "react-redux";
-import { selectOrderQuantity } from "../saga/reducer";
+import { selectOrderQuantity } from "../../saga/reducer";
 import { Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
-import { Fade, Tooltip } from "@mui/material";
+import HeaderTooltip from "./HeaderTooltip";
+
 
 const Header = () => {
 
@@ -16,22 +17,24 @@ const Header = () => {
       <Navbar bg="light" data-bs-theme="light">
         <Nav className="me-auto">
           <Nav.Link as={Link} to="/shops">
-            <ShoppingBagOutlinedIcon />
-            Shops
+            <HeaderTooltip title="Shops">
+              <ShoppingBagOutlinedIcon />
+              Shops
+            </HeaderTooltip>
           </Nav.Link>
           <Nav.Link as={Link} to="/cart">
-            <Tooltip
+            <HeaderTooltip
               title={`You have ${quantity || 'no'} ${quantity === 1 ? 'product' : 'products'} in your cart`}
-              TransitionComponent={Fade}
-              TransitionProps={{ timeout: 600 }}
             >
               <ShoppingCartOutlinedIcon />
               Cart ({quantity || 0})
-            </Tooltip>
+            </HeaderTooltip>
           </Nav.Link>
           <Nav.Link as={Link} to="/admin">
-            <AdminPanelSettingsOutlinedIcon />
-            Admin
+            <HeaderTooltip title="Admin panel">
+              <AdminPanelSettingsOutlinedIcon />
+              Admin
+            </HeaderTooltip>
           </Nav.Link>
         </Nav>
       </Navbar>
