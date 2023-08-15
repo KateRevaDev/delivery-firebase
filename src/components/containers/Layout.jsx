@@ -1,4 +1,5 @@
-import Header from "../Header";
+import Header from "../Header/Header";
+
 
 const Layout = ({ children }) => {
     return (<>
