@@ -1,5 +1,7 @@
 import { Button, Card, CloseButton } from "react-bootstrap";
 import Holder from "../assets/holder286x180.svg"
+import AnimatedHolder from "../assets/holder.gif"
+import { useState } from "react";
 
 const Products = ({ products, addToCart, removeProduct, isAdmin }) => {
     return (
@@ -14,10 +16,16 @@ const Products = ({ products, addToCart, removeProduct, isAdmin }) => {
 
 const Product = ({ item, addToCart, removeProduct, isAdmin }) => {
     const { price, currency, name, description, imageURL } = item;
+    const [isImgLoaded, setImgIsImgLoaded] = useState(false);
     return (
         <Card className="product-item" >
             {isAdmin && <CloseButton onClick={() => removeProduct(item)} />}
-            <Card.Img variant="top" src={imageURL || Holder} />
+            <Card.Img
+                className="product-item__img"
+                variant="top"
+                onLoad={() => setImgIsImgLoaded(true)}
+                src={isImgLoaded ? (imageURL ? imageURL : Holder) : (imageURL ? AnimatedHolder : Holder)}
+            />
             <Card.Body>
                 <Card.Title>{name}</Card.Title>
                 <Card.Text>{description}</Card.Text>

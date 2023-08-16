@@ -40,6 +40,12 @@
   }
 }
 
+.product-item__img {
+  max-width: 286px;
+  height: 180px;
+  object-fit: contain;
+}
+
 .cart {
   display: flex;
 }
