@@ -1,5 +1,5 @@
 import Shops from "../components/Shops";
-import Products from "../components/Products";
+import Products from "../components/Products/Products";
 import Layout from "../components/containers/Layout";
 
 const ShopProducts = ({ products, shops, currentShop, setCurrentShop, addToCart, isAdmin, removeProduct }) => {

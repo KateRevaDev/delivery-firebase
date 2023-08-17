@@ -1,7 +1,8 @@
 import { Button, Card, CloseButton } from "react-bootstrap";
-import Holder from "../assets/holder286x180.svg"
-import AnimatedHolder from "../assets/holder.gif"
+import Holder from "../../assets/holder286x180.svg"
+import AnimatedHolder from "../../assets/holder.gif"
 import { useState } from "react";
+import TextTruncate from "react-text-truncate";
 
 const Products = ({ products, addToCart, removeProduct, isAdmin }) => {
     return (
@@ -28,7 +29,14 @@ const Product = ({ item, addToCart, removeProduct, isAdmin }) => {
             />
             <Card.Body>
                 <Card.Title>{name}</Card.Title>
-                <Card.Text>{description}</Card.Text>
+                <Card.Text className="product-item__description">
+                    <TextTruncate
+                        line={2}
+                        element="span"
+                        truncateText="..."
+                        text={description}
+                    />
+                </Card.Text>
                 <Card.Subtitle className="mb-2 text-muted">
                     {price || 0} {' '} {currency || "UAH"}
                 </Card.Subtitle>
