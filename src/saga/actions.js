@@ -36,6 +36,10 @@ export const createOrder = (payload) => {
     return { type: types.SAGA_CREATE_ORDER, payload };
 }
 
+export const resetCart = (payload) => {
+    return { type: types.RESET_CART, payload };
+}
+
 export const removeProduct = (payload) => {
     return { type: types.SAGA_REMOVE_PRODUCT, payload };
 }

@@ -31,9 +31,6 @@ const App = () => {
     getProducts,
     setCurrentShop,
     addToCart,
-    removeItemFromCart,
-    updateOrder,
-    createOrder,
     removeProduct,
   } = bindActionCreators(sagaActions, dispatch);
 
@@ -66,9 +63,6 @@ const App = () => {
           <Cart
             order={order}
             orderCreated={orderCreated}
-            removeItemFromCart={removeItemFromCart}
-            updateOrder={updateOrder}
-            createOrder={createOrder}
           />}
         />
         <Route

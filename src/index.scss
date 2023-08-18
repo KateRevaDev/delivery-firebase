@@ -72,21 +72,23 @@
 }
 
 .cart-item {
-  display: flex;
-  margin-bottom: 20px;
+  
 }
 
 .cart-item__content {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+}
+
+.cart-item__img {
+  width: 143px;
+  max-height: 90px;
+  object-fit: contain;
 }
 
 .cart-item__quantity {
   display: flex;
   flex-direction: row;
-  margin: 4px 0;
 }
 
 .cart-item__close-img {

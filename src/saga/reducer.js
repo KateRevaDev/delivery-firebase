@@ -46,6 +46,30 @@ export default function appReducer(state = initialState, action) {
       return { ...state, order };
     case types.SAGA_REMOVE_PRODUCT_SUCCESS:
       return { ...state, goods: state.goods.filter(item => item.id !== data.id) };
+    case types.SAGA_CREATE_ORDER_SUCCESS:
+      return {
+        ...state, order: {
+          name: "",
+          email: "",
+          phone: "",
+          address: "",
+          goods: [],
+          total: 0,
+        },
+        orderCreated: true,
+      };
+    case types.RESET_CART:
+      return {
+        ...state, order: {
+          name: "",
+          email: "",
+          phone: "",
+          address: "",
+          goods: [],
+          total: 0,
+        },
+        orderCreated: false,
+      };
     default:
       return state;
   }

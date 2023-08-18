@@ -26,6 +26,10 @@ export const UPDATE_ORDER = 'UPDATE_ORDER';
 export const UPDATE_ORDER_SUCCESS = 'UPDATE_ORDER_SUCCESS';
 export const UPDATE_ORDER_FAIL = 'UPDATE_ORDER_FAIL';
 
+export const RESET_CART = 'RESET_CART';
+export const RESET_CART_SUCCESS = 'RESET_CART_SUCCESS';
+export const RESET_CART_FAIL = 'RESET_CART_FAIL';
+
 // Admin panel
 
 export const SAGA_ADD_SHOP = 'SAGA_ADD_SHOP';
