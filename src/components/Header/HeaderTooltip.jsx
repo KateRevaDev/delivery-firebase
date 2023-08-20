@@ -1,14 +1,16 @@
 import { Fade, Tooltip } from "@mui/material";
 
 const HeaderTooltip = ({ title, children }) => {
-    return <Tooltip
-      title={title}
-      TransitionComponent={Fade}
-      TransitionProps={{ timeout: 600 }}
-      arrow
-    >
+  return <Tooltip
+    title={title}
+    TransitionComponent={Fade}
+    TransitionProps={{ timeout: 600 }}
+    arrow
+  >
+    <>
       {children}
-    </Tooltip>;
-  }
+    </>
+  </Tooltip>;
+}
 
-  export default HeaderTooltip;
+export default HeaderTooltip;
