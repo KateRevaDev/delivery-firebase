@@ -3,6 +3,7 @@ import Holder from "../../assets/holder286x180.svg"
 import AnimatedHolder from "../../assets/holder.gif"
 import { useState } from "react";
 import TextTruncate from "react-text-truncate";
+import { Rating } from "@mui/material";
 
 const Products = ({ products, addToCart, removeProduct, isAdmin }) => {
     return (
@@ -16,8 +17,9 @@ const Products = ({ products, addToCart, removeProduct, isAdmin }) => {
 };
 
 const Product = ({ item, addToCart, removeProduct, isAdmin }) => {
-    const { price, currency, name, description, imageURL } = item;
+    const { price, currency, name, description, imageURL, rate } = item;
     const [isImgLoaded, setImgIsImgLoaded] = useState(false);
+    const [rating, setRating] = useState(rate || 5);
     return (
         <Card className="product-item" >
             {isAdmin && <CloseButton onClick={() => removeProduct(item)} />}
@@ -40,6 +42,13 @@ const Product = ({ item, addToCart, removeProduct, isAdmin }) => {
                 <Card.Subtitle className="mb-2 text-muted">
                     {price || 0} {' '} {currency || "UAH"}
                 </Card.Subtitle>
+                <Rating
+                    name="simple-controlled"
+                    value={rating}
+                    onChange={(event, newValue) => {
+                        setRating(newValue);
+                    }}
+                />
                 <Button variant="outline-dark" onClick={() => addToCart(item)}>Add to cart</Button>
             </Card.Body>
         </Card>
