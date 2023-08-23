@@ -7,9 +7,7 @@ const HeaderTooltip = ({ title, children }) => {
     TransitionProps={{ timeout: 600 }}
     arrow
   >
-    <>
-      {children}
-    </>
+    {children}
   </Tooltip>;
 }
 
