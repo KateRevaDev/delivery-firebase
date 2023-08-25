@@ -13,6 +13,7 @@ import AdminPanel from "./pages/AdminPanel.jsx";
 import * as sagaActions from "./saga/actions.js";
 import { bindActionCreators } from "@reduxjs/toolkit";
 import Loader from "./components/Loader.jsx";
+import Profile from "./pages/Profile.jsx";
 
 
 const App = () => {
@@ -76,6 +77,9 @@ const App = () => {
             isAdmin={isAdmin}
             removeProduct={({ id }) => removeProduct({ shopId: currentShop.id, id })}
           />}
+        />
+        <Route path="profile" element={
+          <Profile />}
         />
         {isAdmin && <Route path="admin" element={<AdminPanel shops={shops} />} />}
       </>

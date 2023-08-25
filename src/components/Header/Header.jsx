@@ -11,6 +11,7 @@ import HeaderTooltip from "./HeaderTooltip";
 const Header = () => {
 
   const quantity = useSelector(selectOrderQuantity);
+  const userName = useSelector(state => state.userInfo.username);
 
   return (
     <header>
@@ -34,6 +35,11 @@ const Header = () => {
             <HeaderTooltip title="Admin panel">
               <AdminPanelSettingsOutlinedIcon />
               Admin
+            </HeaderTooltip>
+          </Nav.Link>
+          <Nav.Link as={Link} to="/profile">
+            <HeaderTooltip title="Profile">
+              Profile
             </HeaderTooltip>
           </Nav.Link>
         </Nav>
