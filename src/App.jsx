@@ -14,6 +14,7 @@ import * as sagaActions from "./saga/actions.js";
 import { bindActionCreators } from "@reduxjs/toolkit";
 import Loader from "./components/Loader.jsx";
 import Profile from "./pages/Profile.jsx";
+import SignUp from "./components/Auth/SignUp.jsx";
 
 
 const App = () => {
@@ -81,6 +82,7 @@ const App = () => {
         <Route path="profile" element={
           <Profile />}
         />
+        <Route path="signup" element={<SignUp />} />
         {isAdmin && <Route path="admin" element={<AdminPanel shops={shops} />} />}
       </>
     )
