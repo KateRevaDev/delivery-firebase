@@ -43,3 +43,8 @@ export const resetCart = (payload) => {
 export const removeProduct = (payload) => {
     return { type: types.SAGA_REMOVE_PRODUCT, payload };
 }
+
+export const registerUser = (payload) => {
+    return { type: types.SAGA_REGISTER_USER, payload };
+}
+

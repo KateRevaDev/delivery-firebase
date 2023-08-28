@@ -64,6 +64,15 @@ function* removeProduct(action) {
   }
 }
 
+function* registerUser(action) {
+  try {
+    const payload = yield call(api.registerUser_fb, action.payload );
+    yield put({ type: types.SAGA_REGISTER_USER_SUCCESS, payload })
+  } catch (e) {
+    yield put({ type: types.SAGA_REGISTER_USER_FAIL, message: e.message })
+  }
+}
+
 function* mySaga() {
   yield takeLatest(types.SAGA_GET_SHOPS, getShops)
   yield takeLatest(types.SAGA_ADD_SHOP, addShop)
@@ -71,6 +80,7 @@ function* mySaga() {
   yield takeLatest(types.SAGA_ADD_GOOD, addGood)
   yield takeLatest(types.SAGA_CREATE_ORDER, createOrder)
   yield takeLatest(types.SAGA_REMOVE_PRODUCT, removeProduct)
+  yield takeLatest(types.SAGA_REGISTER_USER, registerUser)
 }
 
 export default mySaga

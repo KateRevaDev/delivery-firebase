@@ -118,3 +118,23 @@ export const removeProduct_fb = async ({ shopId, id }) => {
 
   return false;
 }
+
+export const registerUser_fb = async ({ userId, name, login, password, email }) => {
+  const db = getDatabase();
+  set(ref(db, 'users/' + userId), {
+    name,
+    login,
+    password,
+    email,
+    // address,
+  })
+    .then(() => {
+      // Data saved successfully!
+      console.log('success');
+    })
+    .catch((error) => {
+      // The write failed...
+      console.log('fail');
+    });
+  return true;
+}
