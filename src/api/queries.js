@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, get, child, remove } from "firebase/database";
 import { getStorage, ref as stRef, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -119,22 +120,16 @@ export const removeProduct_fb = async ({ shopId, id }) => {
   return false;
 }
 
-export const registerUser_fb = async ({ userId, name, login, password, email }) => {
-  const db = getDatabase();
-  set(ref(db, 'users/' + userId), {
-    name,
-    login,
-    password,
-    email,
-    // address,
-  })
-    .then(() => {
-      // Data saved successfully!
-      console.log('success');
-    })
-    .catch((error) => {
-      // The write failed...
-      console.log('fail');
-    });
-  return true;
+export const registerUser_fb = async ({ name, login, password, email }) => {
+  const auth = getAuth();
+  const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+  console.log('userCredential ', userCredential);
+  return { userName: userCredential.user.email };
+}
+
+export const loginUser_fb = async ({ email, password }) => {
+  const auth = getAuth();
+  const userCredential = await signInWithEmailAndPassword(auth, email, password);
+  console.log('userCredential ', userCredential);
+  return { userName: userCredential.user.email };
 }

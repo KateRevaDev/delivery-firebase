@@ -48,3 +48,6 @@ export const registerUser = (payload) => {
     return { type: types.SAGA_REGISTER_USER, payload };
 }
 
+export const loginUser = (payload) => {
+    return { type: types.SAGA_LOGIN_USER, payload };
+}

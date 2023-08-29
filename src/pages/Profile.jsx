@@ -4,8 +4,7 @@ import Layout from "../components/containers/Layout"
 const Profile = ({ username }) => {
     return (
     <Layout>
-        Profile info
-        {username ? '' : <SignIn />} 
+        {username ? `Profile info ${username}` : <SignIn />} 
     </Layout>
     );
 }

@@ -11,7 +11,7 @@ import HeaderTooltip from "./HeaderTooltip";
 const Header = () => {
 
   const quantity = useSelector(selectOrderQuantity);
-  const userName = useSelector(state => state.userInfo.username);
+  const username = useSelector(state => state.userInfo.name);
 
   return (
     <header>
@@ -39,7 +39,7 @@ const Header = () => {
           </Nav.Link>
           <Nav.Link as={Link} to="/profile">
             <HeaderTooltip title="Profile">
-              Profile
+              {username ? `Hello, ${username}` : 'Profile'}
             </HeaderTooltip>
           </Nav.Link>
         </Nav>

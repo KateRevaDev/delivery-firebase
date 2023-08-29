@@ -15,32 +15,32 @@ const SignUp = () => {
 
     const onSubmit = data => {
         console.log(data);
-        registerUser({...data, userId: '1'});
+        registerUser(data);
     };
 
     return (
         <Layout>
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <Form.Group className="mb-3">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control {...register("email", { required: true })} placeholder="Your email" />
+                    {errors.email && <span>This field is required</span>}
+                </Form.Group>
+                {/* <Form.Group className="mb-3">
                     <Form.Label>Login</Form.Label>
                     <Form.Control {...register("login", { required: true })} placeholder="Your login" />
                     {errors.login && <span>This field is required</span>}
-                </Form.Group>
+                </Form.Group> */}
                 <Form.Group className="mb-3">
                     <Form.Label>Password</Form.Label>
                     <Form.Control {...register("password", { required: true })} type="password" placeholder="Your password" />
                     {errors.password && <span>This field is required</span>}
                 </Form.Group>
-                <Form.Group className="mb-3">
+                {/* <Form.Group className="mb-3">
                     <Form.Label>Confirm password</Form.Label>
                     <Form.Control {...register("confirmPassword", { required: true })} type="password" placeholder="Confirm password" />
                     {errors.confirmPassword && <span>This field is required</span>}
-                </Form.Group>
-                <Form.Group className="mb-3">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control {...register("email", { required: true })} placeholder="Your email" />
-                    {errors.email && <span>This field is required</span>}
-                </Form.Group>
+                </Form.Group> */}
                 <Form.Group className="mb-3">
                     <Form.Label>Name</Form.Label>
                     <Form.Control {...register("name")} placeholder="Your name" />

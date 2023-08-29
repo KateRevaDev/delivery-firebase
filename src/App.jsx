@@ -26,6 +26,7 @@ const App = () => {
   const orderCreated = useSelector(state => state.orderCreated)
   const currentShop = useSelector(state => state.currentShop);
   const isAdmin = useSelector(state => state.userInfo.isAdmin);
+  const username = useSelector(state => state.userInfo.name);
 
   const dispatch = useDispatch();
   const {
@@ -80,7 +81,7 @@ const App = () => {
           />}
         />
         <Route path="profile" element={
-          <Profile />}
+          <Profile username={username} />}
         />
         <Route path="signup" element={<SignUp />} />
         {isAdmin && <Route path="admin" element={<AdminPanel shops={shops} />} />}
