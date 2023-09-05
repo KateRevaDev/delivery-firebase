@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, get, child, remove } from "firebase/database";
 import { getStorage, ref as stRef, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -21,6 +21,8 @@ const firebaseConfig = {
 export function initialize_fb() {
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  console.log('auth ', auth);
 }
 
 export async function getShops_fb() {
@@ -128,8 +130,28 @@ export const registerUser_fb = async ({ name, login, password, email }) => {
 }
 
 export const loginUser_fb = async ({ email, password }) => {
-  const auth = getAuth();
+  const auth = getAuth(initializeApp(firebaseConfig));
+  console.log('auth ', auth);
+  const persistence = await setPersistence(auth, browserSessionPersistence);
   const userCredential = await signInWithEmailAndPassword(auth, email, password);
   console.log('userCredential ', userCredential);
   return { userName: userCredential.user.email };
 }
+
+// import { getAuth, setPersistence, signInWithEmailAndPassword, browserSessionPersistence } from "firebase/auth";
+
+// const auth = getAuth();
+// setPersistence(auth, browserSessionPersistence)
+//   .then(() => {
+//     // Existing and future Auth states are now persisted in the current
+//     // session only. Closing the window would clear any existing state even
+//     // if a user forgets to sign out.
+//     // ...
+//     // New sign-in will be persisted with session persistence.
+//     return signInWithEmailAndPassword(auth, email, password);
+//   })
+//   .catch((error) => {
+//     // Handle Errors here.
+//     const errorCode = error.code;
+//     const errorMessage = error.message;
+//   });
