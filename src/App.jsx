@@ -26,7 +26,7 @@ const App = () => {
   const orderCreated = useSelector(state => state.orderCreated)
   const currentShop = useSelector(state => state.currentShop);
   const isAdmin = useSelector(state => state.userInfo.isAdmin);
-  const username = useSelector(state => state.userInfo.name);
+  const username = useSelector(state => state.userInfo.email);
 
   const dispatch = useDispatch();
   const {

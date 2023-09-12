@@ -13,7 +13,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({
     thunk: true, serializableCheck: {
       // Ignore these action types
-      ignoredActions: ['SAGA_ADD_GOOD'],
+      ignoredActions: ['SAGA_ADD_GOOD', 'UPDATE_USERINFO'],
     },
   }).concat(sagaMiddleware, logger),
 })

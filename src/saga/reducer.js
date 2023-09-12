@@ -16,7 +16,7 @@ const initialState = {
   orderCreated: false,
   userInfo: {
     isAdmin: true,
-    name: '',
+    email: '',
   },
 };
 
@@ -71,15 +71,10 @@ export default function appReducer(state = initialState, action) {
         },
         orderCreated: false,
       };
-    case types.SAGA_LOGIN_USER_SUCCESS:
+    case types.UPDATE_USERINFO:
       return {
         ...state,
-        userInfo: { ...state.userInfo, name: data.userName },
-      };
-    case types.SAGA_REGISTER_USER_SUCCESS:
-      return {
-        ...state,
-        userInfo: { ...state.userInfo, name: data.userName },
+        userInfo: { ...state.userInfo, email: data.email },
       };
     default:
       return state;
