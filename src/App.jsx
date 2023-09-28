@@ -13,6 +13,8 @@ import AdminPanel from "./pages/AdminPanel.jsx";
 import * as sagaActions from "./saga/actions.js";
 import { bindActionCreators } from "@reduxjs/toolkit";
 import Loader from "./components/Loader.jsx";
+import Profile from "./pages/Profile.jsx";
+import SignUp from "./components/Auth/SignUp.jsx";
 
 
 const App = () => {
@@ -24,6 +26,7 @@ const App = () => {
   const orderCreated = useSelector(state => state.orderCreated)
   const currentShop = useSelector(state => state.currentShop);
   const isAdmin = useSelector(state => state.userInfo.isAdmin);
+  const username = useSelector(state => state.userInfo.email);
 
   const dispatch = useDispatch();
   const {
@@ -77,6 +80,10 @@ const App = () => {
             removeProduct={({ id }) => removeProduct({ shopId: currentShop.id, id })}
           />}
         />
+        <Route path="profile" element={
+          <Profile username={username} />}
+        />
+        <Route path="signup" element={<SignUp />} />
         {isAdmin && <Route path="admin" element={<AdminPanel shops={shops} />} />}
       </>
     )

@@ -16,6 +16,7 @@ const initialState = {
   orderCreated: false,
   userInfo: {
     isAdmin: true,
+    email: '',
   },
 };
 
@@ -69,6 +70,11 @@ export default function appReducer(state = initialState, action) {
           total: 0,
         },
         orderCreated: false,
+      };
+    case types.UPDATE_USERINFO:
+      return {
+        ...state,
+        userInfo: { ...state.userInfo, email: data.email },
       };
     default:
       return state;

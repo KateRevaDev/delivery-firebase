@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, get, child, remove } from "firebase/database";
 import { getStorage, ref as stRef, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -19,7 +20,13 @@ const firebaseConfig = {
 
 export function initialize_fb() {
   // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
+  // const app = initializeApp(firebaseConfig);
+  const app = firebaseApp();
+  const auth = getAuth(app);
+}
+
+export function firebaseApp() {
+  return initializeApp(firebaseConfig);
 }
 
 export async function getShops_fb() {

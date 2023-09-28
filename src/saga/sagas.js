@@ -64,6 +64,7 @@ function* removeProduct(action) {
   }
 }
 
+
 function* mySaga() {
   yield takeLatest(types.SAGA_GET_SHOPS, getShops)
   yield takeLatest(types.SAGA_ADD_SHOP, addShop)

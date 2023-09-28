@@ -43,3 +43,7 @@ export const resetCart = (payload) => {
 export const removeProduct = (payload) => {
     return { type: types.SAGA_REMOVE_PRODUCT, payload };
 }
+
+export const updateUserInfo = (payload) => {
+    return { type: types.UPDATE_USERINFO, payload };
+}
