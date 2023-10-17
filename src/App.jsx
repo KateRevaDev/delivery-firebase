@@ -54,13 +54,15 @@ const App = () => {
       <>
         <Route
           path="/"
-          element={
-            <ShopProducts
-              products={products}
-              shops={shops}
-              currentShop={currentShop}
-              setCurrentShop={setCurrentShop}
-            />}
+          element={<ShopProducts
+            products={products}
+            shops={shops}
+            currentShop={currentShop}
+            setCurrentShop={setCurrentShop}
+            addToCart={addToCart}
+            isAdmin={isAdmin}
+            removeProduct={({ id }) => removeProduct({ shopId: currentShop.id, id })}
+          />}
         />
         <Route path="cart" element={
           <Cart
